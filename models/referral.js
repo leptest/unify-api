@@ -5,8 +5,8 @@ var referralSchema=new Schema({
     merchantID:'String',
     fromID: 'String',
     toID: 'String',
-    status: 'String',
-    points:'String'
+    points:'String',
+    status: 'String'
 });
 
 module.exports=mongoose.model('Referrals',referralSchema);

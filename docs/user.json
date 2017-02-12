@@ -1,8 +1,21 @@
 {
-    "name": "Daniel Chapman",
-    "image": "http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-tech-guy.png"
-},
-{
-    "name": "Philippa Christie",
-    "image": "http://www.lovemarks.com/wp-content/uploads/profile-avatars/default-avatar-indian-girl.png"
+	"_id": "1",
+	"name": "Daniel Chapman",
+	"image": "http://i63.tinypic.com/4royv8.png"
+}, {
+	"_id": "2",
+	"name": "Philippa Christie",
+	"image": "http://i67.tinypic.com/54brtf.png"
+}, {
+	"_id": "3",
+	"name": "Adam Chapman",
+	"image": "http://i63.tinypic.com/2guxrax.png"
+}, {
+	"_id": "4",
+	"name": "Rosie Briggs",
+	"image": "http://i64.tinypic.com/288mwox.png"
+}, {
+	"_id": "5",
+	"name": "Amber Maggio",
+	"image": "http://i67.tinypic.com/2hn5e7p.png"
 }

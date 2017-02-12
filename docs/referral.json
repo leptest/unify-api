@@ -1,14 +1,8 @@
 {
-    "fromID": "589fcd8205c7c7000f790857",
-    "toID": "589fcd8805c7c7000f790858",
-    "merchantID":"589fde4a05c7c7000f79085a",
-    "points":"9000",
-    "status":"active"
-},
-{
-    "fromID": "589fcd8805c7c7000f790858",
-    "toID": "589fcd8205c7c7000f790857",
-    "merchantID":"589fde4a05c7c7000f79085a",
-    "points":"9000",
-    "status":"done"
+	"_id": "1",
+	"merchantID": "1",
+	"fromID": "2",
+	"toID": "1",
+	"points": "15",
+	"status": "active"
 }
