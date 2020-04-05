@@ -1,12 +1,13 @@
-var mongoose=require('mongoose');
-var Schema=mongoose.Schema;
+const mongoose = require('mongoose');
 
-var referralSchema=new Schema({
-    merchantID:'String',
-    fromID: 'String',
-    toID: 'String',
-    points:'String',
-    status: 'String'
+const { Schema } = mongoose;
+
+const referralSchema = new Schema({
+	merchantID: 'String',
+	fromID: 'String',
+	toID: 'String',
+	points: 'String',
+	status: 'String',
 });
 
-module.exports=mongoose.model('Referrals',referralSchema);
+module.exports = mongoose.model('Referrals', referralSchema);

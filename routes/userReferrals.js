@@ -1,20 +1,19 @@
-var Referrals = require('../models/referral');
-var Users = require('../models/user');
-var Merchant=require('../models/merchant');
+const express = require('express');
+const Referrals = require('../models/referral');
+const Users = require('../models/user');
+const Merchant = require('../models/merchant');
 
-var express = require('express');
 
-//configure routes
+// configure routes
 
-var router = express.Router();
+const router = express.Router();
 
 router.route('/userReferrals/:id')
-	.get(function(req, res) {
+	.get((req, res) => {
 		Users.findOne({
-			_id: req.params.id
-		}, function(err, user) {
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, user) => {
+			if (err) res.send(err);
 
 			console.log(user);
 

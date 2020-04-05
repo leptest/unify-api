@@ -1,68 +1,60 @@
-var User=require('../models/user');
-var express=require('express');
+const express = require('express');
+const User = require('../models/user');
 
-//configure routes
+// configure routes
 
-var router=express.Router();
+const router = express.Router();
 
 router.route('/users')
-    .get(function(req,res){
-       User.find(function(err,users){
-           if(err)
-                res.send(err);
-           res.json(users);
-       });
-    })
+	.get((req, res) => {
+		User.find((err, users) => {
+			if (err) res.send(err);
+			res.json(users);
+		});
+	})
 
-    .post(function(req,res){
-        var user=new User(req.body);
-        user.save(function(err){
-            if(err)
-                res.send(err);
-            res.send({message:'User Added'});
-        });
-    });
+	.post((req, res) => {
+		const user = new User(req.body);
+		user.save((err) => {
+			if (err) res.send(err);
+			res.send({ message: 'User Added' });
+		});
+	});
 
 router.route('/users/:id')
-    .put(function(req,res){
-        User.findOne({_id:req.params.id},function(err,user){
+	.put((req, res) => {
+		User.findOne({ _id: req.params.id }, (err, user) => {
+			if (err) res.send(err);
 
-            if(err)
-                res.send(err);
+			for (prop in req.body) {
+				user[prop] = req.body[prop];
+			}
 
-           for(prop in req.body){
-                user[prop]=req.body[prop];
-           }
+			// save the user
+			user.save((err) => {
+				if (err) res.send(err);
 
-            // save the user
-            user.save(function(err) {
-                if (err)
-                    res.send(err);
+				res.json({ message: 'User updated!' });
+			});
+		});
+	})
 
-                res.json({ message: 'User updated!' });
-            });
+	.get((req, res) => {
+		User.findOne({ _id: req.params.id }, (err, user) => {
+			if (err) res.send(err);
 
-        });
-    })
+			res.json(user);
+		});
+	})
 
-    .get(function(req,res){
-        User.findOne({_id:req.params.id},function(err, user) {
-            if(err)
-                res.send(err);
+	.delete((req, res) => {
+		User.remove({
+			_id: req.params.id,
+		}, (err, user) => {
+			if (err) res.send(err);
 
-            res.json(user);
-        });
-    })
+			res.json({ message: 'Successfully deleted' });
+		});
+	});
 
-    .delete(function(req,res){
-        User.remove({
-            _id: req.params.id
-        }, function(err, user) {
-            if (err)
-                res.send(err);
-
-            res.json({ message: 'Successfully deleted' });
-        });
-    });
-
-module.exports=router;
+module.exports = router;

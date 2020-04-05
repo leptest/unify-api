@@ -1,87 +1,78 @@
-var Referrals = require('../models/referral');
-var express = require('express');
+const express = require('express');
+const Referrals = require('../models/referral');
 
-//configure routes
+// configure routes
 
-var router = express.Router();
+const router = express.Router();
 
 router.route('/referrals')
-	.get(function(req, res) {
-		Referrals.find(function(err, referrals) {
-			if (err)
-				res.send(err);
+	.get((req, res) => {
+		Referrals.find((err, referrals) => {
+			if (err) res.send(err);
 			res.json(referrals);
 		});
 	})
 
-	.post(function(req, res) {
-		var referral = new Referrals(req.body);
-		referral.save(function(err) {
-			if (err)
-				res.send(err);
+	.post((req, res) => {
+		const referral = new Referrals(req.body);
+		referral.save((err) => {
+			if (err) res.send(err);
 			res.send({
-				message: 'Referrals Added'
+				message: 'Referrals Added',
 			});
 		});
 	})
 
-	.delete(function(req, res) {
-		Referrals.remove({}, function(err, referral) {
-			if (err)
-				res.send(err);
+	.delete((req, res) => {
+		Referrals.remove({}, (err, referral) => {
+			if (err) res.send(err);
 
 			res.json({
-				message: 'Successfully deleted all referrals'
+				message: 'Successfully deleted all referrals',
 			});
 		});
 	});
 
 router.route('/referrals/:id')
-	.put(function(req, res) {
+	.put((req, res) => {
 		Referrals.findOne({
-			_id: req.params.id
-		}, function(err, referral) {
-
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, referral) => {
+			if (err) res.send(err);
 
 			for (prop in req.body) {
 				referral[prop] = req.body[prop];
 			}
 
 			// save the referral
-			referral.save(function(err) {
-				if (err)
-					res.send(err);
+			referral.save((err) => {
+				if (err) res.send(err);
 
 				res.json({
-					message: 'Referrals updated!'
+					message: 'Referrals updated!',
 				});
 			});
-
 		});
 	})
 
-	.get(function(req, res) {
+	.get((req, res) => {
 		Referrals.findOne({
-			_id: req.params.id
-		}, function(err, referral) {
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, referral) => {
+			if (err) res.send(err);
 
 			res.json(referral);
 		});
 	})
 
-	.delete(function(req, res) {
+	.delete((req, res) => {
 		Referrals.remove({
-			_id: req.params.id
-		}, function(err, referral) {
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, referral) => {
+			if (err) res.send(err);
 
 			res.json({
-				message: 'Successfully deleted'
+				message: 'Successfully deleted',
 			});
 		});
 	});

@@ -1,76 +1,68 @@
-var Merchant = require('../models/merchant');
-var express = require('express');
+const express = require('express');
+const Merchant = require('../models/merchant');
 
-//configure routes
+// configure routes
 
-var router = express.Router();
+const router = express.Router();
 
 router.route('/merchants')
-	.get(function(req, res) {
-		Merchant.find(function(err, merchants) {
-			if (err)
-				res.send(err);
+	.get((req, res) => {
+		Merchant.find((err, merchants) => {
+			if (err) res.send(err);
 			res.json(merchants);
 		});
 	})
 
-	.post(function(req, res) {
-		var merchant = new Merchant(req.body);
-		merchant.save(function(err) {
-			if (err)
-				res.send(err);
+	.post((req, res) => {
+		const merchant = new Merchant(req.body);
+		merchant.save((err) => {
+			if (err) res.send(err);
 			res.send({
-				message: 'Merchant Added'
+				message: 'Merchant Added',
 			});
 		});
 	});
 
 router.route('/merchants/:id')
-	.put(function(req, res) {
+	.put((req, res) => {
 		Merchant.findOne({
-			_id: req.params.id
-		}, function(err, merchant) {
-
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, merchant) => {
+			if (err) res.send(err);
 
 			for (prop in req.body) {
 				merchant[prop] = req.body[prop];
 			}
 
 			// save the merchant
-			merchant.save(function(err) {
-				if (err)
-					res.send(err);
+			merchant.save((err) => {
+				if (err) res.send(err);
 
 				res.json({
-					message: 'Merchant updated!'
+					message: 'Merchant updated!',
 				});
 			});
-
 		});
 	})
 
-	.get(function(req, res) {
+	.get((req, res) => {
 		Merchant.findOne({
-			_id: req.params.id
-		}, function(err, merchant) {
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, merchant) => {
+			if (err) res.send(err);
 
 			res.json(merchant);
 		});
 	})
 
-	.delete(function(req, res) {
+	.delete((req, res) => {
 		Merchant.remove({
-			_id: req.params.id
-		}, function(err, merchant) {
-			if (err)
-				res.send(err);
+			_id: req.params.id,
+		}, (err, merchant) => {
+			if (err) res.send(err);
 
 			res.json({
-				message: 'Successfully deleted'
+				message: 'Successfully deleted',
 			});
 		});
 	});
